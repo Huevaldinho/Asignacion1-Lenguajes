@@ -1,89 +1,24 @@
-#Creadores
-#Fecha Creación 11/09/2022
-#Referencia para el buscar iterativo: Luis Salcedo (19/07/2018 - Actualizado: 22/12/2020)
-# https://pythondiario.com/2018/07/arbol-binario-de-busqueda-estructura-de.html
+"""
+Creadores
 
-class Nodo:
-    """
-        Nodo de un ABB, cada nodo tiene un hijo izquierdo y derecho,
-        una llave (identificador) y un valor (contador).
-    """
-    def __init__(self,llaveIN):
-        """
-            Crea un nuevo nodo con la llave que recibe.
-            Inicializa el valor en 1.
+Fecha Creación: 11/09/2022
+Ultima Modificacion: 13/09/2022
 
-            Parametros:
-                -llaveIN int: Numero entero que se le asigna a la llave del nodo
-            
-            Retorna:
-                No retorna.
-        """
-        self.hijoIzquierdo = None # Inicializa el hijo izquierdo.
-        self.hijoDerecho = None # Inicializa el hijo derecho.
-        self.llave = llaveIN #Asigna la llave.
-        self.valor = 1 #Inicializa el valor en 1 cuando crea un nodo.
-    def obtenerLlave (self):
-        """
-            Metodo para obtener la llave de un nodo.
+Fuente del metodo buscarNodo: Salcedo, L. (19/07/2018). Árbol binario de búsqueda - Estructura de datos en Python.
+                            Mi Diario Python. Consultado el 12 de Septiembre de 2022.
+                            https://pythondiario.com/2018/07/arbol-binario-de-busqueda-estructura-de.html.
+Modificado por Felipe Obando Arrieta para que retorne True|False.
 
-            Parametros:
-                -Ninguno.
-            
-            Retorna:
-                -self.llave int: Llave del nodo.
 
-        """
-        return self.llave
-    def obtenerHijoIzquierdo(self):
-        """
-            Metodo para obtener el hijo izquierdo de un nodo.
+"""
 
-            Parametro:
-                -Ninguno.
-            Retorna:
-                -self.hijoIzquierdo Nodo|None: Retorna un Nodo o None. None cuando el hijo izquierdo aun
-                no tiene asignado ningun Nodo.
 
-        """
-        return self.hijoIzquierdo
-    def obtenerHijoDerecho(self):
-        """
-            Metodo para obtener el hijo derecho de un nodo.
+from Nodo import Nodo
 
-            Parametro:
-                -Ninguno.
-
-            Retorna:
-                -self.hijoDerecho Nodo|None: Retorna un Nodo o None. None cuando el hijo derecho aun
-                no tiene asignado ningun Nodo.
-
-        """
-
-        return self.hijoDerecho
-    def asignarHijoIzquierdo(self,hijo):
-        self.hijoIzquierdo=hijo
-    def asignarHijoDerecho(self,hijo):
-        self.hijoDerecho=hijo
-    def aumentarValor(self):
-        """
-            Suma uno al valor (contador) del nodo.
-            
-            Parametros:
-                Ninguno.
-            
-            Retorna:
-                No retorna.
-
-        """
-        self.valor = (self.valor + 1)
-    def obtenerValor(self):
-        return self.valor
-    
 class ABB:
     """
-            La clase ABB (Árbol Binario de Búsqueda) contiene
-        un nodo raíz, cada nodo tiene un hijo derecho e hijo izquierdo,
+            La clase ABB (Árbol Binario de Búsqueda) contieneun nodo raíz,
+        cada nodo tiene un hijo derecho e hijo izquierdo,
         junto con dos numeros enteros: llave (identificador) y valor (contador).
     """
     def __init__(self):
@@ -91,9 +26,9 @@ class ABB:
             El método constructor __init__ instancia el árbol, inicializa la raiz en None.
 
         Parameteros:
-            Ninguno.
+            -Ninguno.
         Retorna:
-            No retorna.
+            -No retorna.
         
         """
         self.raiz = None # Inicializa el nodo raiz del árbol en None.
@@ -102,15 +37,15 @@ class ABB:
     ##-------------------------------------------------#
     def insertar(self,llaveIN):
         """
-            Una función que haga la inserción de un valor entero (la llave) en el ABB. 
+            Metodo para insertar una llave en el arbol.
 
-            Si la llave no se encuentra en el árbol, crea un nuevo nodo con la llave e inicializa el contador en 1. 
-            Si la llave ya se encuentra en el árbol, no la inserta, pero suma 1 al contador asociado con esa llave (en el nodo).
+        Si la llave no se encuentra en el árbol, crea un nuevo nodo con la llave e inicializa el contador en 1. 
+        Si la llave ya se encuentra en el árbol, no la inserta, pero suma 1 al contador asociado con esa llave (en el nodo).
 
-            Parametros
-                -llaveIn: numero entero para asignar a la llave del nodo.
-            Retorna:
-                No retorna.
+        Parametros
+            -llaveIn: numero entero para asignar a la llave del nodo.
+        Retorna:
+            -No retorna.
 
         """
         if (self.buscarNodo(llaveIN)): #La llave ya se encuentra en el arbol.
@@ -147,22 +82,30 @@ class ABB:
 
     def buscarNodo(self,llaveBuscada):
         """
-            PREGUNTARLE AL PROFE SI SE PUEDE MODIFICAR LOS VALORES QUE RETORNA
-            A None para cuando no existe en el arbol o el Nodo que contiene la llave.
+            Metodo para buscar el nodo con la llaveBuscada en el arbol.
 
-            Como solo se puede tener un parametro (llaveBuscada), no se puede utilizar recursion
-            para ir bajando en el arbol a traves de los nodos hijos. Se tiene que hacer
-            iterativo.
+            Fuente: Salcedo, L. (19/07/2018). Árbol binario de búsqueda - Estructura de datos en Python.
+            Mi Diario Python. Consultado el 12 de Septiembre de 2022.
+            https://pythondiario.com/2018/07/arbol-binario-de-busqueda-estructura-de.html.
+            
 
-            Una función que haga la búsqueda de un valor entero (la llave) en el ABB sin hacer inserciones. 
+            Modificado por Felipe Obando Arrieta para que retorne True| False, en lugar de None|Nodo.
+
+        PREGUNTARLE AL PROFE SI SE PUEDE MODIFICAR LOS VALORES QUE RETORNA
+        A None para cuando no existe en el arbol o el Nodo que contiene la llave.
+
+        Como solo se puede tener un parametro (llaveBuscada), no se puede utilizar recursion
+        para ir bajando en el arbol a traves de los nodos hijos. Se tiene que hacer
+        iterativo.
+
+            Metodo para la búsqueda de un valor entero (la llave) en el ABB sin hacer inserciones. 
             La función debe retornar un valor booleano que indique si encontró la llave buscada (true = la encontró, false = no la encontró).
 
-            Parametros:
-                -llaveBuscada int: Numero entero que se busca encontrar en las llaves de los nodos del arbol.
-            
-            Retorna:
-                -True bool: Retorna verdadero si encontro la llaveBuscada en el arbol.
-                -False bool: Retorna falso si no encontro la lleveBuscad en el arbol.
+        Parametros:
+            -llaveBuscada int: Numero entero que se busca encontrar en las llaves de los nodos del arbol.
+        
+        Retorna:
+            -True|False bool: Retorna verdadero si encontro la llaveBuscada, False si NO la encontro.
         """
         nodoActual = None #Variable para buscar en el arbol el nodo con la llaveBuscada.
         if (self.esVacia()): #Si el arbol esta vacio, la llave no puede estar en el.
@@ -191,13 +134,14 @@ class ABB:
 
     def obtenerNodo(self,llaveBuscada,nodoActual):
         """
-                Metodo para obtener el nodo con la llaveBuscada.
-            Parametros:
-                -llaveBuscada int: Numero entero que se busca encontrar en las llaves de los nodos del arbol.
-                -nodoActual Nodo|None: Nodo donde se buscara la llave o se baja a buscar en sus hijos.
-            
-            Retorna:
-                -Nodo|none: Retorna el nodo con la llaveBuscada o None si no la encuentra.
+            Metodo para obtener el nodo con la llaveBuscada.
+
+        Parametros:
+            -llaveBuscada int: Numero entero que se busca encontrar en las llaves de los nodos del arbol.
+            -nodoActual Nodo|None: Nodo donde se buscara la llave o se baja a buscar en sus hijos.
+        
+        Retorna:
+            -Nodo|none: Retorna el nodo con la llaveBuscada o None si no la encuentra.
         """
         if (nodoActual == None): #Si el nodoActual es None es porque el arbol esta vacio o porque
                                 #en la recursion de otra llamada se llego a una hoja
@@ -220,11 +164,11 @@ class ABB:
         """
             Determina si el arbol esta vacio.
 
-            Parametros: 
-                -Ninguno.
-            
-            Returna:
-                -True|False bool: Verdadero si la lista esta vacia, falso si la lista NO esta vacia.
+        Parametros: 
+            -Ninguno.
+        
+        Returna:
+            -True|False bool: Verdadero si la lista esta vacia, falso si la lista NO esta vacia.
         """
         if self.raiz is None:
             return True
@@ -232,31 +176,29 @@ class ABB:
 
     def obtenerRaiz(self):
         """
-                Metodo para obtener la raiz del arbol
+            Metodo para obtener la raiz del arbol
 
-            Parametros:
-                -Ninguno.
-            
-            Retorna:
-                -self.raiz Nodo|None: Retorna el nodo raiz del arbol. None el arbol no tiene nodos.
+        Parametros:
+            -Ninguno.
+        
+        Retorna:
+            -self.raiz Nodo|None: Retorna el nodo raiz del arbol. None el arbol no tiene nodos.
         """
         return self.raiz
     ##-------------------------------------------------#
 
     ##Recorridos del arbol
     ##-------------------------------------------------#
-    def preorder(self,nodoActual):
-        """Descripción de la función
-        Parameters
-        ----------
-        parametro_1 : tipo
-            Descripción del parametro
-        parametro_2 : tipo
-            Descripción del parametro
-        Returns
-        -------
-        tipo
-            Descripción de los valores que devuelve
+    def preorden(self,nodoActual):
+        """
+            Metodo para recorrer el arbol en preorden.
+
+        Parametros:
+            -nodoActual Nodo: Nodo para realizar recorrido.
+
+        Retorna:
+            -No retorna.
+
         """
         ##Recorre el arbol node en sentido raiz - hijo izquierdo - hijo derecho.
         ## node Node: Recibe un objeto de tipo Node.
@@ -265,42 +207,38 @@ class ABB:
         
         if nodoActual is not None:
             print("Llave:",nodoActual.obtenerLlave()," | Valor:",nodoActual.obtenerValor())
-            self.preorder(nodoActual.obtenerHijoIzquierdo())
-            self.preorder(nodoActual.obtenerHijoDerecho())
+            self.preorden(nodoActual.obtenerHijoIzquierdo())
+            self.preorden(nodoActual.obtenerHijoDerecho())
 
-    def inorder(self,nodoActual):
-        """Descripción de la función
-        Parameters
-        ----------
-        parametro_1 : tipo
-            Descripción del parametro
-        parametro_2 : tipo
-            Descripción del parametro
-        Returns
-        -------
-        tipo
-            Descripción de los valores que devuelve
+    def inorden(self,nodoActual):
+        """
+            Metodo para recorrer el arbol en inorden.
+
+        Parametros:
+            -nodoActual Nodo: Nodo para realizar recorrido.
+
+        Retorna:
+            -No retorna.
+            
         """
         if nodoActual is not None:
-            self.inorder(nodoActual.obtenerHijoIzquierdo())
+            self.inorden(nodoActual.obtenerHijoIzquierdo())
             print("Llave:",nodoActual.obtenerLlave()," | Valor:",nodoActual.obtenerValor())
-            self.inorder(nodoActual.obtenerHijoDerecho())
-    def postorder(self,nodoActual):
-        """Descripción de la función
-        Parameters
-        ----------
-        parametro_1 : tipo
-            Descripción del parametro
-        parametro_2 : tipo
-            Descripción del parametro
-        Returns
-        -------
-        tipo
-            Descripción de los valores que devuelve
+            self.inorden(nodoActual.obtenerHijoDerecho())
+    def postorden(self,nodoActual):
+        """
+            Metodo para recorrer el arbol en postorden.
+
+        Parametros:
+            -nodoActual Nodo: Nodo para realizar recorrido.
+
+        Retorna:
+            -No retorna.
+            
         """
         if nodoActual is not None:
-            self.postorder(nodoActual.obtenerHijoIzquierdo())
-            self.postorder(nodoActual.obtenerHijoDerecho())
+            self.postorden(nodoActual.obtenerHijoIzquierdo())
+            self.postorden(nodoActual.obtenerHijoDerecho())
             print("Llave:",nodoActual.obtenerLlave()," | Valor:",nodoActual.obtenerValor())
     ##-------------------------------------------------#
 
@@ -313,10 +251,8 @@ arbol.insertar(8)
 arbol.insertar(12)
 arbol.insertar(17)#1
 print()
-arbol.inorder(arbol.obtenerRaiz())
+arbol.inorden(arbol.obtenerRaiz())
 arbol.insertar(17)#2
 arbol.insertar(17)#3
 arbol.insertar(17)#4
-arbol.inorder(arbol.obtenerRaiz())
-
-
+arbol.inorden(arbol.obtenerRaiz())
