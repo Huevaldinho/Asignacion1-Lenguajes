@@ -318,21 +318,5 @@ arbol.insertar(17)#2
 arbol.insertar(17)#3
 arbol.insertar(17)#4
 arbol.inorder(arbol.obtenerRaiz())
-#arbol.preorder(arbol.obtenerRaiz())
 
-#ERROR, no esta enlazando los nodos.
-
-"""##Crea la raiz del arbol con dato = 10
-root = ABB(10)
-##Inserta 34 en el hijo izquierdo
-root.left = Node(34)
-##Inserta 89 en el hijo derecho
-root.right = Node(89)
-##Al hijo izquierdo inserta 45 en el nodo izquierdo.
-root.left.left = Node(45)
-##Al hijo derecho inserta 50 en el nodo derecho.
-root.left.right = Node(50)
-
-root.inorder(root)##Llama el metodo in order para imprimir el arbol
-"""
 
