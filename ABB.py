@@ -49,12 +49,10 @@ class ABB:
 
         """
         if (self.buscarNodo(llaveIN)): #La llave ya se encuentra en el arbol.
-            #Obtiene el nodo (o None) con la llaveIN, le pasa la raiz del arbol para que empiece a buscar el nodo.
+            #Obtiene el nodo con la llaveIN.
             nodoLlaveBuscada = self.obtenerNodo(llaveIN,self.obtenerRaiz())
-            if (nodoLlaveBuscada is not None): #Si no es None es porque si obtuvo el nodo con la llaveIN.
-                nodoLlaveBuscada.aumentarValor() #Aumenta el contador+1  del nodo con la llaveIN.
-            else: #En teoria no debe llegar aqui porque buscar nodo me confirma que el nodo con la llaveIN si existe.
-                print("No existe nodo con la llave:",llaveIN)
+            nodoLlaveBuscada.aumentarValor() #Aumenta el contador+1  del nodo con la llaveIN.
+           
         else: #No existe el nodo con la llaveIN.
             nodoActual = None
             if (self.esVacia()): #Si el arbol esta vacio
@@ -63,13 +61,15 @@ class ABB:
             else: #El arbol no esta vacio
 
                 nodoActual = nodoPadre = self.obtenerRaiz() #Toma la raiz para empezar a buscar donde insertarlo
-                 
-                while nodoActual is not None: #Mientras el nodo actual no sea una hoja, se ejecuta el ciclo.
-                    nodoPadre = nodoActual
+
+                #Mientras el nodo actual no sea una hoja, se ejecuta el ciclo.
+                while nodoActual is not None: 
+                    nodoPadre = nodoActual #Guarda el ultimo nodo para poder enlazarlo con el nuevo
                     if (llaveIN <= nodoActual.obtenerLlave()): #La llave es menor o igual que el nodo
                         nodoActual = nodoActual.obtenerHijoIzquierdo()
                     else:
                         nodoActual = nodoActual.obtenerHijoDerecho()
+
                 #Cuando se sale del ciclo es porque ya llego a una hoja donde puede insertar el nuevo nodo
                 nodoActual = Nodo(llaveIN)
                 #Si el nodoPadre es mayor que el nodo actual, el actual sera el hijo izquierdo del padre
@@ -90,13 +90,6 @@ class ABB:
             
 
             Modificado por Felipe Obando Arrieta para que retorne True| False, en lugar de None|Nodo.
-
-        PREGUNTARLE AL PROFE SI SE PUEDE MODIFICAR LOS VALORES QUE RETORNA
-        A None para cuando no existe en el arbol o el Nodo que contiene la llave.
-
-        Como solo se puede tener un parametro (llaveBuscada), no se puede utilizar recursion
-        para ir bajando en el arbol a traves de los nodos hijos. Se tiene que hacer
-        iterativo.
 
             Metodo para la búsqueda de un valor entero (la llave) en el ABB sin hacer inserciones. 
             La función debe retornar un valor booleano que indique si encontró la llave buscada (true = la encontró, false = no la encontró).
@@ -130,7 +123,7 @@ class ABB:
         #Termino de buscar la llave en el arbol
         if nodoActual is not None: #Si el nodoActual no es None significa que si encontro el nodo con la lleveBuscada.
             return True
-        return False #Si None es porque llevo a una hoja, por lo tanto NO encontro la llave buscada.
+        return False 
 
     def obtenerNodo(self,llaveBuscada,nodoActual):
         """
@@ -188,31 +181,67 @@ class ABB:
     ##-------------------------------------------------#
 
     ##Recorridos del arbol
+    #Cada uno de ellos debe entregar un par (llave, contador)
     ##-------------------------------------------------#
-    def preorden(self,nodoActual):
+    def enorden(self,nodoActual):
         """
-            Metodo para recorrer el arbol en preorden.
+            Metodo para recorrer el arbol en inorden. izquierda - raiz - derecha
 
         Parametros:
             -nodoActual Nodo: Nodo para realizar recorrido.
 
         Retorna:
             -No retorna.
-
+            
         """
-        ##Recorre el arbol node en sentido raiz - hijo izquierdo - hijo derecho.
-        ## node Node: Recibe un objeto de tipo Node.
-        ##Cuando la recursion llega a una hoja no entra en el if node
-        ##entonces la recursion se regresa para continuar con el recorrido.
+        if nodoActual is not None:
+            self.enorden(nodoActual.obtenerHijoIzquierdo()) #Recorre todo por la izquierda
+            print((nodoActual.obtenerLlave(),nodoActual.obtenerValor())) #Cuando termina de recorrer todo izquierda imprime centro
+            self.enorden(nodoActual.obtenerHijoDerecho()) #Recorre todo por derecha
+
+    def generadorEnOrden(self,nodoActual):
+        """
+            Metodo para generar recorrido del arbol enOrden.
+                izquierda - raiz - derecha
+
+        Parametros:
+            -nodoActual Nodo|None: Recibe un nodo del arbol o None si es una hoja del arbol.
         
-        if nodoActual is not None:
-            print("Llave:",nodoActual.obtenerLlave()," | Valor:",nodoActual.obtenerValor())
-            self.preorden(nodoActual.obtenerHijoIzquierdo())
-            self.preorden(nodoActual.obtenerHijoDerecho())
+        Retorna: 
+            -(llave,valor) (int,int): Tupla de enteros.
 
-    def inorden(self,nodoActual):
         """
-            Metodo para recorrer el arbol en inorden.
+        if nodoActual is not None: #Mismo funcionamiento que un enOrden pero
+            #yield from toma todos los resultados de la llamada recursiva
+            yield from self.generadorEnOrden(nodoActual.obtenerHijoIzquierdo())
+            #yield toma llave:valor
+            yield (nodoActual.obtenerLlave(),nodoActual.obtenerValor())
+            yield from self.generadorEnOrden(nodoActual.obtenerHijoDerecho())
+          
+       
+       
+    def generarPreOrden(self,nodoActual):
+        """
+            Metodo para generar recorrido del arbol en preOrden.
+                raiz - izquierda - derecha
+
+        Parametros:
+            -nodoActual Nodo: Nodo para realizar recorrido.
+
+        Retorna:
+            -No retorna.
+
+        """
+        if nodoActual is not None:
+            #print("Llave:",nodoActual.obtenerLlave()," | Valor:",nodoActual.obtenerValor())
+            yield (nodoActual.obtenerLlave(),nodoActual.obtenerValor())
+            yield from self.generarPreOrden(nodoActual.obtenerHijoIzquierdo())
+            yield from self.generarPreOrden(nodoActual.obtenerHijoDerecho())
+
+    def generarPostOrden(self,nodoActual):
+        """
+            Metodo para generar recorrido del arbol en postOrden. 
+                izquierda - derecha - raiz
 
         Parametros:
             -nodoActual Nodo: Nodo para realizar recorrido.
@@ -222,24 +251,10 @@ class ABB:
             
         """
         if nodoActual is not None:
-            self.inorden(nodoActual.obtenerHijoIzquierdo())
-            print("Llave:",nodoActual.obtenerLlave()," | Valor:",nodoActual.obtenerValor())
-            self.inorden(nodoActual.obtenerHijoDerecho())
-    def postorden(self,nodoActual):
-        """
-            Metodo para recorrer el arbol en postorden.
-
-        Parametros:
-            -nodoActual Nodo: Nodo para realizar recorrido.
-
-        Retorna:
-            -No retorna.
+            yield from self.generarPostOrden(nodoActual.obtenerHijoIzquierdo())
+            yield from self.generarPostOrden(nodoActual.obtenerHijoDerecho())
+            yield (nodoActual.obtenerLlave(),nodoActual.obtenerValor())
             
-        """
-        if nodoActual is not None:
-            self.postorden(nodoActual.obtenerHijoIzquierdo())
-            self.postorden(nodoActual.obtenerHijoDerecho())
-            print("Llave:",nodoActual.obtenerLlave()," | Valor:",nodoActual.obtenerValor())
     ##-------------------------------------------------#
 
 arbol = ABB()
@@ -251,8 +266,27 @@ arbol.insertar(8)
 arbol.insertar(12)
 arbol.insertar(17)#1
 print()
-arbol.inorden(arbol.obtenerRaiz())
+#arbol.enorden(arbol.obtenerRaiz())
 arbol.insertar(17)#2
 arbol.insertar(17)#3
 arbol.insertar(17)#4
-arbol.inorden(arbol.obtenerRaiz())
+
+#arbol.enorden(arbol.obtenerRaiz())
+
+#Crea el generador en orden del arbol
+generadorEnOrden = arbol.generadorEnOrden(arbol.obtenerRaiz())
+#Toma el menor elemento del arbol
+#print(next(generadorEnOrden))
+#print(next(generadorEnOrden))
+#print(next(generadorEnOrden))
+#print(next(generadorEnOrden))
+
+print("Recorrer generador en orden")
+for i in generadorEnOrden:#range(1,5):
+    #print(next(generadorEnOrden))
+    print(i)
+
+print("Recorrer generador en postOrden")
+generadorPostOrden = arbol.generarPostOrden(arbol.obtenerRaiz())
+for j in generadorPostOrden:
+    print(j)
