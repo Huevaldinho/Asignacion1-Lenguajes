@@ -8,13 +8,6 @@ Modificado por Alonso Garita Granados
 
 import generadorPrimos as gp
 
-def siguiente_primo(semilla):
-    # Busca t retorna el primer primo p tal que p >= semilla
-    for p in gp.generarPrimos(semilla):
-        if(p >= semilla):
-            return p
-    return None #Nunca llega a este return
-
 def aleatorio (semilla, n):
     ## x tomará como base la semilla
     ## n es la cantidad de números pseudoaleatorios que deseamos generar
@@ -28,10 +21,28 @@ def aleatorio (semilla, n):
     a = 109  ## multiplicador
     b = 853  ## incremento
 
-    ## x será la semilla para iterar (esto puede ser modificado)
+    #--Seleccionar el x primo a partir del cual generar los aleatorios
+    x = 0
+    isPrimo = True
+    primos = [2, 3, 5, 7] # No hace falta validar valores menores que 11
+    repeat = True
+    m = 11 # Interesa buscar primos mayores o iguales que 11
 
-    x = siguiente_primo(semilla)
-    #Cuando sale, con certeza x >= semilla
+    while (repeat):
+        for p in primos:
+            if(m % p == 0):
+                isPrimo = False
+                break
+
+        if(isPrimo):
+            if(m >= semilla):
+                x = m
+                repeat = False
+        else:
+            isPrimo = True
+        m+=1
+
+    #--Cuando sale, con certeza x >= semilla
 
     for i in range (n):
         ## devolver el número aleatorio actual
