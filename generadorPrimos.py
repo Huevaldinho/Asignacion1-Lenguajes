@@ -1,13 +1,25 @@
-#Proyecto Lenguajes
-#Punto 5.
+"""
+Generador de números primos
+Fuente: Creación propia
+Autor: Alonso Garita Granados
+"""
 
 def generarPrimos(n):
-    isPrimo = True
+    """
+    Params:
+        n: Cantidad de primos para generar
+    Yield:
+        m: Candidato validado como primo en secuencia
+    Return:
+        None
+    """
+    
+    isPrimo = True #Asumimos que el número es primo
     primos = []
     i = 0 #Contador para generar n primos
-    m = 2 #Candidatos a primos
+    m = 2 #Candidatos a primos iniciando desde 2
 
-    while (i < n): #Range(n-1) hace que i esté en el rango [2, n], de lo contrario estaría en [2, n+1]
+    while (i < n):
         for p in primos:
             if(m % p == 0): #Chequea si es divisible entre otro primo averiguado
                 isPrimo = False
@@ -17,8 +29,8 @@ def generarPrimos(n):
             primos.append(m) #Lo agrega
             yield m #Lo libera
             i+=1 #Incrementa el contador
-        else:
-            isPrimo = True
+        else: #Sino
+            isPrimo = True #Asumimos el siguiente como primo
         m+=1 #Siguiente candidato
 
     return None

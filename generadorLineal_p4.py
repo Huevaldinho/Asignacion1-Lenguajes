@@ -30,12 +30,12 @@ def aleatorio (semilla, n):
             break
     #Cuando sale, con certeza x >= semilla
 
+    print("pRIMER x")
     for i in range (n):
+        ## devolver el número aleatorio actual
+        yield x
         ## calcular el siguiente número aleatorio
         x = (a * x + b) % m
-
-        ## devolver el siguiente número aleatorio
-        yield x
 
     ## terminar (el for que consuma a este iterador nunca llegará aquí)
     return "fin"
