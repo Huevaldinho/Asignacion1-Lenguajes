@@ -32,23 +32,23 @@ def aleatorio (semilla, n):
     isPrimo = True
     primos = [2, 3, 5, 7] # No hace falta validar valores menores que 11
     repeat = True
-    m = 11 # Interesa buscar primos mayores o iguales que 11
+    candidato = 11 # Interesa buscar primos mayores o iguales que 11
 
     #Verifica para todos los enteros entre 11 y x0 cuál es el primo para definir x0
     #Fuente: Item 5 del presente trabajo
     while (repeat):
         for p in primos:
-            if(m % p == 0):
+            if(candidato % p == 0):
                 isPrimo = False
                 break
 
         if(isPrimo):
-            if(m >= semilla):
-                x = m
+            if(candidato >= semilla):
+                x = candidato
                 repeat = False
         else:
             isPrimo = True
-        m+=1
+        candidato+=1
 
     #En este punto, con certeza x es primo y x >= semilla
 
@@ -61,20 +61,15 @@ def aleatorio (semilla, n):
     #Nunca se llega a este return
     return None
 
-"""
+
 ## Semilla, cantidad, rango, frecuencias
 semilla = int(input ("Ingrese una semilla, por favor: "))
 cuántos = int(input ("¿Cuántos números pseudo-aleatorios desea generar?: "))
 rango = int(input ("¿Cuál es el rango de los valores por generar (0 hasta r)?: "))
 rango += 1 ## ajuste al rango
-
 lista = [ r for r in aleatorio (semilla, cuántos) ]
-
 for r in lista:
         print (r)
-
 en_rango = [ r % rango for r in aleatorio (semilla, cuántos) ]
-
 for r in en_rango:
         print (r)
-"""
