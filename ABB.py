@@ -257,36 +257,36 @@ class ABB:
             
     ##-------------------------------------------------#
 
-arbol = ABB()
-arbol.insertar(10)
-arbol.insertar(5)
-arbol.insertar(15)
-arbol.insertar(3)
-arbol.insertar(8)
-arbol.insertar(12)
-arbol.insertar(17)#1
-print()
+# arbol = ABB()
+# arbol.insertar(10)
+# arbol.insertar(5)
+# arbol.insertar(15)
+# arbol.insertar(3)
+# arbol.insertar(8)
+# arbol.insertar(12)
+# arbol.insertar(17)#1
+# print()
 #arbol.enorden(arbol.obtenerRaiz())
-arbol.insertar(17)#2
-arbol.insertar(17)#3
-arbol.insertar(17)#4
+# arbol.insertar(17)#2
+# arbol.insertar(17)#3
+# arbol.insertar(17)#4
 
 #arbol.enorden(arbol.obtenerRaiz())
 
 #Crea el generador en orden del arbol
-generadorEnOrden = arbol.generadorEnOrden(arbol.obtenerRaiz())
+# generadorEnOrden = arbol.generadorEnOrden(arbol.obtenerRaiz())
 #Toma el menor elemento del arbol
-#print(next(generadorEnOrden))
-#print(next(generadorEnOrden))
-#print(next(generadorEnOrden))
-#print(next(generadorEnOrden))
+# print(next(generadorEnOrden))
+# print(next(generadorEnOrden))
+# print(next(generadorEnOrden))
+# print(next(generadorEnOrden))
 
-print("Recorrer generador en orden")
-for i in generadorEnOrden:#range(1,5):
-    #print(next(generadorEnOrden))
-    print(i)
+# print("Recorrer generador en orden")
+# for i in generadorEnOrden:#range(1,5):
+#     #print(next(generadorEnOrden))
+#     print(i)
 
-print("Recorrer generador en postOrden")
-generadorPostOrden = arbol.generarPostOrden(arbol.obtenerRaiz())
-for j in generadorPostOrden:
-    print(j)
+# print("Recorrer generador en postOrden")
+# generadorPostOrden = arbol.generarPostOrden(arbol.obtenerRaiz())
+# for j in generadorPostOrden:
+#     print(j)
