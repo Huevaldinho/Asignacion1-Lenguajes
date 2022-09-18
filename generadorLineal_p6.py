@@ -61,6 +61,7 @@ def aleatorio (semilla, n):
     #Nunca se llega a este return
     return None
 
+"""
 ## Semilla, cantidad, rango, frecuencias
 semilla = int(input ("Ingrese una semilla, por favor: "))
 cuántos = int(input ("¿Cuántos números pseudo-aleatorios desea generar?: "))
@@ -76,4 +77,4 @@ en_rango = [ r % rango for r in aleatorio (semilla, cuántos) ]
 
 for r in en_rango:
         print (r)
-
+"""
