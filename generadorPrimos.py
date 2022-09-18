@@ -35,9 +35,15 @@ def generarPrimos(n):
 
     return None
 
-def main():
-    for p in generarPrimos(50):
-        print(p)
+def test():
+
+    for p in generarPrimos(1000):
+        q = p + 2
+        if(q in generarPrimos(1000)):
+            #Si q es igual a algún valor generado por generarPrimos...
+            print("(", p, ",", q, ")", end=" , ")
+
     return None
 
-main()
+test()
+

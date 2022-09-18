@@ -6,28 +6,36 @@ Adaptado para Python por Ignacio Trejos Zelaya
 Modificado por Alonso Garita Granados
 """
 
-import generadorPrimos as gp
-
 def aleatorio (semilla, n):
-    ## x tomará como base la semilla
-    ## n es la cantidad de números pseudoaleatorios que deseamos generar
+    """
+    Params:
+        semilla: número a partir del que se define el primer número pseudoaleatorio
+        n: cantidad de números pseudoaleatorios deseados
+    Yield:
+        x: i-ésimo número pseudoaleatorio de la sucesión
+    Return:
+        None
+    """
 
-    if(semilla < 11): #Se asegura que la semilla sea al menos 11
+    #Si la semiila es menor que 11, forzamos a que sea 11
+    if(semilla < 11):
         semilla = 11
 
-    ## Inicializaciones
-    ## La literatura  explica la importancia de elegir bien los valores m, a y b
-    m = 4096 ## período
-    a = 109  ## multiplicador
-    b = 853  ## incremento
+    # Inicializaciones
+    # Parámetros tomados de la implementación de Dromey (1982)
+    m = 4096 ## Periodo
+    a = 109  ## Multiplicador
+    b = 853  ## Incremento
 
-    #--Seleccionar el x primo a partir del cual generar los aleatorios
+    #Definir el primer número pseudoaleatorio (x0)
     x = 0
     isPrimo = True
     primos = [2, 3, 5, 7] # No hace falta validar valores menores que 11
     repeat = True
     m = 11 # Interesa buscar primos mayores o iguales que 11
 
+    #Verifica para todos los enteros entre 11 y x0 cuál es el primo para definir x0
+    #Fuente: Item 5 del presente trabajo
     while (repeat):
         for p in primos:
             if(m % p == 0):
@@ -42,16 +50,16 @@ def aleatorio (semilla, n):
             isPrimo = True
         m+=1
 
-    #--Cuando sale, con certeza x >= semilla
+    #En este punto, con certeza x es primo y x >= semilla
 
-    for i in range (n):
-        ## devolver el número aleatorio actual
+    for i in range(n):
+        #Liberar el número pseudoaleatorio actual
         yield x
-        ## calcular el siguiente número aleatorio
+        #Calcular el siguiente número pseudoaleatorio
         x = (a * x + b) % m
 
-    ## terminar (el for que consuma a este iterador nunca llegará aquí)
-    return "fin"
+    #Nunca se llega a este return
+    return None
 
 ## Semilla, cantidad, rango, frecuencias
 semilla = int(input ("Ingrese una semilla, por favor: "))
