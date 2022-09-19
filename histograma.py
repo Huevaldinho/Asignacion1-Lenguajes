@@ -73,3 +73,8 @@ def main():
 main()
 
 # histogram([17, 20, 22, 25, 26, 27, 30, 31, 32, 38, 40, 40, 45, 55])
+
+# Para descargar la libreria matplotlib
+# C:\Users\mfss0>cd\
+# C:\>cd C:\Users\mfss0\AppData\Local\Programs\Python\Python39\Scripts
+# C:\Users\mfss0\AppData\Local\Programs\Python\Python39\Scripts>pip install matplotlib
