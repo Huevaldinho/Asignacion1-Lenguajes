@@ -27,7 +27,7 @@ function isPrime(x)
     return true -- No se encontraron divisores
 end
 
-co = coroutine.create(function (num)
+co = coroutine.create(function ()
    --[[
     Genera numeros primos
 
@@ -35,7 +35,7 @@ co = coroutine.create(function (num)
         -Ninguno.
 
     Libera:
-        Tuple: Tuple con True y el número si pudó liberar el número.
+        Tuple: Estado de la corrutina y el número primo.
     ]]
     i = 2
     while true do --Ciclo para generar los números
@@ -49,10 +49,20 @@ co = coroutine.create(function (num)
 end)
 
 function main(num)
-    for i=1,num do
-        print("Numero " , i, ": ",coroutine.resume(co, num))
+    --[[
+    Imprime num cantidad de números primos del generador
+
+    Parametros:
+        -num(int): Cantidad de números primos a imprimir.
+
+    Retorna:
+        
+    ]]
+    for i=1,num do --For para imprimir num cantidad de números primos
+        estatusLocal, valor = coroutine.resume(co) --Consumidor del generador de números primos
+        print("Numero " , i, ": ",valor)--Impresion de número primo
     end
-    print("Terminamos en el main")
+    print("FIN")
     return 
 end
 
