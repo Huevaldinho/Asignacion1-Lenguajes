@@ -61,15 +61,19 @@ def aleatorio (semilla, n):
     #Nunca se llega a este return
     return None
 
+def test():
+    rango = 10 + 1 #Rango con ajuste
+    frecuencias = [0] * rango #Lista con 'rango' ceros
+    #        aleatorio(semilla, n)
+    for r in aleatorio(100, 100): #Generación de números
+        index = r % rango #El número r se sesga con el rango
+        #El resultado se guarda en un index para llevar el conteo de resultados. 
+        #index := {0 .. 10}
+        frecuencias[index] += 1
 
-## Semilla, cantidad, rango, frecuencias
-semilla = int(input ("Ingrese una semilla, por favor: "))
-cuántos = int(input ("¿Cuántos números pseudo-aleatorios desea generar?: "))
-rango = int(input ("¿Cuál es el rango de los valores por generar (0 hasta r)?: "))
-rango += 1 ## ajuste al rango
-lista = [ r for r in aleatorio (semilla, cuántos) ]
-for r in lista:
-        print (r)
-en_rango = [ r % rango for r in aleatorio (semilla, cuántos) ]
-for r in en_rango:
-        print (r)
+    #El campo n corresponde a las apariciones del valor n
+    print(frecuencias)
+
+    return None
+
+test()
