@@ -77,7 +77,7 @@ class ABB:
                     nodoPadre.asignarHijoIzquierdo(nodoActual)
                 else:
                     nodoPadre.asignarHijoDerecho(nodoActual)
-            print("Se ha insertado nodo con la llave: ",nodoActual.obtenerLlave())
+            # print("Se ha insertado nodo con la llave: ",nodoActual.obtenerLlave())
 
 
     def buscarNodo(self,llaveBuscada):
@@ -178,6 +178,18 @@ class ABB:
             -self.raiz Nodo|None: Retorna el nodo raiz del arbol. None el arbol no tiene nodos.
         """
         return self.raiz
+
+    def reiniciarRaiz(self):
+        """
+            Metodo para reiniciar la raiz del arbol
+
+        Parametros:
+            -Ninguno.
+        
+        Retorna:
+            -No retorna.
+        """
+        self.raiz = None
     ##-------------------------------------------------#
 
     ##Recorridos del arbol

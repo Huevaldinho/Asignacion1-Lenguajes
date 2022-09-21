@@ -1,5 +1,9 @@
-# Fecha Creacion: 17/09/2022
-# Ultima Modificacion: 16/09/2022
+"""
+
+Fecha Creación: 17/09/2022
+Ultima Modificacion: 19/09/2022
+
+"""
 
 import matplotlib.pyplot as plt
 import math
@@ -24,21 +28,6 @@ def getBins(n, maxi, mini):
     intervals.append(span+width)
     return intervals
 
-def createHistogram(x):
-    """
-        Muestra un histograma con los datos de x
-
-        Parametros:
-            -x (list): Lista de datos
-
-        Retorna:
-            
-    """
-    plt.hist(x, bins=getBins(len(x), x[-1], x[0]))
-    plt.xlabel("Número")
-    plt.ylabel("Repeticiones")
-    plt.show()
-
 def getData(tree):
     """
         Retorna una lista con los datos ordenados del arbol tree
@@ -55,6 +44,23 @@ def getData(tree):
         for j in range(0,i[1]):
             datos.append(i[0])
     return datos
+    
+def createHistogram(x):
+    """
+        Muestra un histograma con los datos de x
+
+        Parametros:
+            -x (list): Lista de datos
+
+        Retorna:
+            
+    """
+    plt.hist(x, bins=getBins(len(x), x[-1], x[0]))
+    plt.xlabel("Número")
+    plt.ylabel("Repeticiones")
+    plt.show()
+
+
 
 def main():
     arbol = treeABB.ABB()
@@ -70,7 +76,7 @@ def main():
     arbol.insertar(17)    
     createHistogram(getData(arbol))
 
-main()
+# main()
 
 # histogram([17, 20, 22, 25, 26, 27, 30, 31, 32, 38, 40, 40, 45, 55])
 
