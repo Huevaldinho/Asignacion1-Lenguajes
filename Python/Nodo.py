@@ -1,6 +1,9 @@
 """
 Creadores:
-
+    Garita Granados Alonso - 2021030220
+    Sanabria Solano María Fernanda - 2021005572 
+    Arguedas Sánchez Raquel Marcela - 2021032567
+    Obando Arrieta Felipe de Jesús - 2021035489
 
 Fecha Creación: 12/09/2022
 Ultima Modificacion: 21/09/2022
