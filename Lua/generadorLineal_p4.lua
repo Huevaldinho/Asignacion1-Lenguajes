@@ -1,3 +1,13 @@
+
+-- Generador de números pseudoaleatorios
+-- Fuente: Dromey, 'How to solve it by computer'
+-- Algorithm 3.6, 'Generation of pseudo-random numbers'
+-- Adaptado para Python por Ignacio Trejos Zelaya
+-- Modificado por Alonso Garita Granados
+-- Implementado en Lua por Raquel Arguedas
+-- Fecha de inicio 15/09/2022
+-- Fecha de finalización 20/09/2022
+
 co = coroutine.create(
 	function (semilla, n)
 		-- si la semilla es menor a 11 la convierte en 11
