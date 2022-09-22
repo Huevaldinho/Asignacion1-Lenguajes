@@ -14,7 +14,6 @@ Fuente del metodo buscarNodo: Salcedo, L. (19/07/2018). Árbol binario de búsqu
                             https://pythondiario.com/2018/07/arbol-binario-de-busqueda-estructura-de.html.
 Modificado por Felipe Obando Arrieta para que retorne True|False.
 
-
 """
 
 
@@ -283,12 +282,12 @@ class ABB:
 # arbol.insertar(12)
 # arbol.insertar(17)#1
 # print()
-#arbol.enorden(arbol.obtenerRaiz())
+# arbol.enorden(arbol.obtenerRaiz())
 # arbol.insertar(17)#2
 # arbol.insertar(17)#3
 # arbol.insertar(17)#4
 
-#arbol.enorden(arbol.obtenerRaiz())
+# arbol.enorden(arbol.obtenerRaiz())
 
 #Crea el generador en orden del arbol
 # generadorEnOrden = arbol.generadorEnOrden(arbol.obtenerRaiz())

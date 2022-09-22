@@ -1,10 +1,13 @@
 """
+Creadores
+    Garita Granados Alonso - 2021030220
+    Sanabria Solano María Fernanda - 2021005572 
+    Arguedas Sánchez Raquel Marcela - 2021032567
+    Obando Arrieta Felipe de Jesús - 2021035489
 
 Fecha Creación: 17/09/2022
 Ultima Modificacion: 19/09/2022
-
 """
-
 import matplotlib.pyplot as plt
 import math
 import ABB as treeABB

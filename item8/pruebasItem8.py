@@ -1,3 +1,14 @@
+"""
+Creadores
+    Garita Granados Alonso - 2021030220
+    Sanabria Solano María Fernanda - 2021005572 
+    Arguedas Sánchez Raquel Marcela - 2021032567
+    Obando Arrieta Felipe de Jesús - 2021035489
+
+Fecha Creación: 19/09/2022
+Ultima Modificacion: 20/09/2022
+"""
+
 import generadorLineal_p6 as genRand
 import histograma as hist
 import ABB as tree

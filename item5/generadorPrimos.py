@@ -1,7 +1,12 @@
 """
 Generador de números primos
-Fuente: Creación propia
-Autor: Alonso Garita Granados
+
+Creadores
+    Garita Granados Alonso - 2021030220
+    Sanabria Solano María Fernanda - 2021005572 
+    Arguedas Sánchez Raquel Marcela - 2021032567
+    Obando Arrieta Felipe de Jesús - 2021035489
+
 """
 
 def generarPrimos(n):
@@ -45,5 +50,5 @@ def test():
 
     return None
 
-##test()
+# test()
 

@@ -1,4 +1,11 @@
 """
+
+Creadores
+    Garita Granados Alonso - 2021030220
+    Sanabria Solano María Fernanda - 2021005572 
+    Arguedas Sánchez Raquel Marcela - 2021032567
+    Obando Arrieta Felipe de Jesús - 2021035489
+
 Generador de números pseudoaleatorios
 Fuente: Dromey, 'How to solve it by computer'
 Algorithm 3.6, 'Generation of pseudo-random numbers'
