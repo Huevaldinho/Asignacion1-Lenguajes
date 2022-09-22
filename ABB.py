@@ -1,8 +1,13 @@
 """
 Creadores
+    Garita Granados Alonso - 2021030220
+    Sanabria Solano María Fernanda - 2021005572 
+    Arguedas Sánchez Raquel Marcela - 2021032567
+    Obando Arrieta Felipe de Jesús - 2021035489
+
 
 Fecha Creación: 11/09/2022
-Ultima Modificacion: 13/09/2022
+Ultima Modificacion: 21/09/2022
 
 Fuente del metodo buscarNodo: Salcedo, L. (19/07/2018). Árbol binario de búsqueda - Estructura de datos en Python.
                             Mi Diario Python. Consultado el 12 de Septiembre de 2022.
