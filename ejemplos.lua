@@ -75,9 +75,19 @@ do
    print(key, value)
 end
 
- -- Iteradores!
  --[[
-Ejemplo 2 iteradpores
+Ejemplo 2 iteradores
+Fuente:  Ierusalimschy R., (s. f.). Stateless Iterators [Software]. http://www.lua.org/pil/7.3.html#:~:text=When%20Lua%20calls%20ipairs%20%28a%29%20in%20a%20for,in%201%2C%20a%20%28unless%20a%20is%20already%20nil%29.
+]]
+string = "Lua Tutorial"
+for key,value in next, array
+do
+   print(key, value)
+end
+
+-- Generadores!
+ --[[
+Ejemplo 1 generadores
 Fuente: tutorialspoint. (s. f.). Example Coroutine [Software]. https://www.tutorialspoint.com/lua/lua_iterators.htm
 ]]
 function square(iteratorMaxCount,currentNumber)
@@ -95,46 +105,36 @@ function square(iteratorMaxCount,currentNumber)
     print(i,n)
  end
 
--- Generadores!
--- Ejemplo 1 generadores
 
-co = coroutine.create(function ()
-    
-     i = 0
-     while true do --Ciclo para generar los números
-         coroutine.yield(i)--Se libera el número
-         i = i + 1 --Se aumenta i
-     end
-     return  --Retornamos
- end)
- 
- num = 5
- for i=1,num do --For para imprimir num cantidad de números
-    estatusLocal, valor = coroutine.resume(co) --Consumidor del generador de números
-    print("Numero " , i, ": ",valor)--Impresion de número
-end
 
 --[[
 Ejemplo 2 generadores
-Fuente: tutorialspoint. (s. f.). Example Coroutine [Software]. https://www.tutorialspoint.com/lua/lua_coroutines.htm
-Modificado por Maria Fernanda Sanabria para simplificar su proceso.
+Fuente: tutorialspoint. (s. f.). Example Stateful Iterators [Software]. https://www.tutorialspoint.com/lua/lua_iterators.htm
 ]]
 
-function getNumber()
-    local function getNumberHelper()
-       co = coroutine.create(function ()
-       coroutine.yield(1)
-       coroutine.yield(2)
-       coroutine.yield(3)
-       coroutine.yield(4)
-       coroutine.yield(5)
-       end)
-       return co
-    end
+array = {"Lua", "Tutorial"}
 
-     
- end
- 
- for index = 1, 5 do
-    print(index, getNumber())
- end
+function elementIterator (collection)
+
+   local index = 0
+   local count = #collection
+	
+   -- The closure function is returned
+	
+   return function ()
+      index = index + 1
+		
+      if index <= count
+      then
+         -- return the current element of the iterator
+         return collection[index]
+      end
+		
+   end
+	
+end
+
+for element in elementIterator(array)
+do
+   print(element)
+end
